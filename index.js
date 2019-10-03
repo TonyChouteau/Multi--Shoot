@@ -4,6 +4,11 @@
 */
 
 let player = null;
+let playImage;
+let mouseAlpha = 0;
+
+let map = null;
+
 let others = [];
 
 let planets = [];
@@ -26,11 +31,16 @@ console.log("Done");*/
     Setup canvas & resizing
 */
 
+function preload() {
+    playImage = loadImage('./space-force.jpg');
+}
+
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
 
     frameRate(60);
     player = new Ship(50, 50, "blue");
+    map = new Map(player, playImage);
 }
 
 function windowResized() {
@@ -45,22 +55,46 @@ function windowResized() {
 
 // gauche, haut, droite, bas : 37 38 39 40
 
+let keys = [false, false, false, false]
+
 function keyPressed() {
-    console.log(keyCode);
+    if (keyCode == 37) {
+        keys[0] = true;
+    } else if (keyCode == 38) {
+        keys[1] = true;
+    } else if (keyCode == 39) {
+        keys[2] = true;
+    } else if (keyCode == 40) {
+        keys[3] = true;
+    }
+    //console.log(keyCode);
 }
 
 function keyReleased() {
-    console.log(keyCode);
+    if (keyCode == 37) {
+        keys[0] = false;
+    } else if (keyCode == 38) {
+        keys[1] = false;
+    } else if (keyCode == 39) {
+        keys[2] = false;
+    } else if (keyCode == 40) {
+        keys[3] = false;
+    }
+    //console.log(keyCode);
 }
 
 function mousePressed() {
     if (mouseButton === LEFT) {
-        console.log(player.shots);
+        //console.log(player.shots);
         player.shot();
         // console.log("Left");
     } else if (mouseButton === RIGHT) {
-        console.log("Right");
+        //console.log("Right");
     }
+}
+
+function mouseMoved() {
+    mouseAlpha = Math.atan2(mouseX - width / 2, mouseY - height / 2) - HALF_PI;
 }
 
 /*
@@ -71,6 +105,9 @@ function mousePressed() {
 
 function draw() {
     background(0, 0, 0);
-    player.update();
+
+    map.display();
+
+    player.update(keys, mouseAlpha);
     player.display();
 }
