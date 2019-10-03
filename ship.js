@@ -14,6 +14,7 @@ class Ship {
     }
 
     update() {
+        console.log("azf");
         for (let i = 0; i++; i < this.shots.length) {
             this.shots[i].update();
         }
