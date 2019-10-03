@@ -14,8 +14,9 @@ class Ship{
     }
 
     update(){
+        console.log(this.shots);
         for(let i = 0; i++; i<this.shots.length){
-            this.Shots[i].update();
+            this.shots[i].update();
         }
     }
 
@@ -23,12 +24,12 @@ class Ship{
         fill(this.color);
         rect(width/2 - this.size/200*height, height/2 - this.size/200*height, (this.size/100)*height, (this.size/100)*height);
         for(let i = 0; i++; i<this.shots.length){
-            this.Shots[i].display();
+            this.shots[i].display();
         }
     }
 
     shot(){
-        shot = new Shot(this.x, this.y, this.color);
+        let shot = new Shot(this.x, this.y, this.alpha, this.color);
         this.shots.push(shot);
         this.cdShot=this.cdMax;
 
