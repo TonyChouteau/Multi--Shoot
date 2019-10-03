@@ -14,8 +14,7 @@ class Ship {
     }
 
     update() {
-        console.log("azf");
-        for (let i = 0; i++; i < this.shots.length) {
+        for (let i = 0; i < this.shots.length; i++) {
             this.shots[i].update();
         }
     }
@@ -23,7 +22,7 @@ class Ship {
     display() {
         fill(this.color);
         rect(width / 2 - this.size / 200 * height, height / 2 - this.size / 200 * height, (this.size / 100) * height, (this.size / 100) * height);
-        for (let i = 0; i++; i < this.shots.length) {
+        for (let i = 0; i < this.shots.length; i++) {
             this.shots[i].display();
         }
     }
