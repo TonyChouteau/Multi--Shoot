@@ -3,16 +3,34 @@ class Ship{
         this.x = x;
         this.y = y;
         this.color = color;
-        this.r = width/100;
+
+        this.cdShot = 0;
+        this.alpha = -3*QUARTER_PI;
+        this.shots = [];
+
+        this.cdMax = 500;//ms
+        this.speed = 3;
+        this.size = 10; // %
     }
 
-    move(){
-        this.x = (this.x+5)%1000;
-        this.y = (this.y+5)%1000;   
+    update(){
+        for(let i = 0; i++; i<this.shots.length){
+            this.Shots[i].update();
+        }
     }
 
     display(){
         fill(this.color);
-        ellipse(this.x, this.y, this.r, this.r);
+        rect(width/2 - this.size/200*height, height/2 - this.size/200*height, (this.size/100)*height, (this.size/100)*height);
+        for(let i = 0; i++; i<this.shots.length){
+            this.Shots[i].display();
+        }
+    }
+
+    shot(){
+        shot = new Shot(this.x, this.y, this.color);
+        this.shots.push(shot);
+        this.cdShot=this.cdMax;
+
     }
 }
