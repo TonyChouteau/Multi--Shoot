@@ -1,14 +1,14 @@
 function setup() {
-    canvas = createCanvas(window.innerWidth, window.innerHeight);
-    canvas.parent("canvas-div");
+    canvas = createCanvas(windowWidth, windowHeight);
+    //canvas.parent("canvas-div");
     frameRate(60);
 }
 
 function windowResized() {
-    canvas = createCanvas(window.innerWidth, window.innerHeight);
-    canvas.parent("canvas-div");
+    resizeCanvas(windowWidth, windowHeight);
+    //canvas.parent("canvas-div");
 }
 
 function draw() {
-
+    background(255, 0, 0);
 }
