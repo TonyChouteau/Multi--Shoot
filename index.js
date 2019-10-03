@@ -1,4 +1,5 @@
 /*
+==========================================
     Variables definition
 */
 
@@ -21,23 +22,53 @@ console.log("Done");*/
 
 /*
     END Variables definition
+==========================================
+    Setup canvas & resizing
 */
 
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
+
     frameRate(60);
-    player1 = new Ship(50, 50, "blue");
+    player = new Ship(50, 50, "blue");
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);    
+    resizeCanvas(windowWidth, windowHeight);
 }
 
+/*
+    END Setup canvas & resizing
+==========================================
+    Handlers for click and keypress
+*/
+
+// gauche, haut, droite, bas : 37 38 39 40
+
+function keyPressed() {
+    console.log(keyCode);
+}
+
+function keyReleased() {
+    console.log(keyCode);
+}
+
+function mousePressed() {
+    if (mouseButton === LEFT) {
+        console.log("Left");
+    } else if (mouseButton === RIGHT) {
+        console.log("Right");
+    }
+}
+
+/*
+    END Handlers for click and keypress
+==========================================
+    Main loop
+*/
 
 function draw() {
     background(0, 0, 0);
-    player1.move();
-    player1.display();
-    
+    player.update();
+    player.display();
 }
-
