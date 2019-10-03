@@ -55,6 +55,7 @@ function keyReleased() {
 
 function mousePressed() {
     if (mouseButton === LEFT) {
+        console.log(player.shots);
         player.shot();
         // console.log("Left");
     } else if (mouseButton === RIGHT) {

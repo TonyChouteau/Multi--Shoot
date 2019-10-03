@@ -1,6 +1,6 @@
-class Shot{
+class Shot {
 
-    constructor(x, y, alpha, color){
+    constructor(x, y, alpha, color) {
         this.alpha = alpha;
         this.x = x;
         this.y = y;
@@ -10,14 +10,12 @@ class Shot{
         this.hit = false;
     }
 
-
-
-    update(){
+    update() {
         this.x++;
         this.y++;
     }
 
-    display(){
+    display() {
         fill(255);
         ellipse(x, y, 50, 50);
     }
