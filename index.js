@@ -26,7 +26,7 @@ console.log("Done");*/
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
     frameRate(60);
-    player1 = new Ship(50, 50, "blue");
+    player = new Ship(50, 50, "blue");
 }
 
 function windowResized() {
@@ -36,8 +36,8 @@ function windowResized() {
 
 function draw() {
     background(0, 0, 0);
-    player1.move();
-    player1.display();
+    player.update();
+    player.display();
     
 }
 
