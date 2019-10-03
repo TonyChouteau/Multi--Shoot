@@ -1,4 +1,27 @@
-let player1;
+/*
+    Variables definition
+*/
+
+let player = null;
+let others = [];
+
+let planets = [];
+
+/*const request = async() => {
+    const response = await fetch("./data.json");
+    const json = await response.json();
+    return json
+}
+
+console.log("Loading");
+let data = null;
+data = request();
+while (data === null) {}
+console.log("Done");*/
+
+/*
+    END Variables definition
+*/
 
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
@@ -9,6 +32,7 @@ function setup() {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);    
 }
+
 
 function draw() {
     background(0, 0, 0);
