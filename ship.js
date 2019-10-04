@@ -1,5 +1,6 @@
 class Ship {
-    constructor(x, y, color) {
+    constructor(id, x, y, color) {
+        this.id = id;
         this.vx = 0;
         this.vy = 0;
         this.x = x;
@@ -10,12 +11,14 @@ class Ship {
         this.alpha = -3 * QUARTER_PI;
         this.shots = [];
 
-        this.cdMax = 500; //ms
-        this.speed = 0.3;
-        this.size = 5; // %
+        this.cdMax = 200; //ms
+        this.speed = 0.1;
+        this.size = 3; // %
+        
+        this.maxSpeed = 3;
     }
 
-    update(keys, alpha) {
+    update(keys, mouseClicks, alpha) {
         this.alpha = alpha;
         if (keys[0]) {
             this.vx -= this.speed * sin(this.alpha) / 10;
@@ -33,17 +36,21 @@ class Ship {
             this.vx -= this.speed * cos(this.alpha) / 10;
             this.vy += this.speed * sin(this.alpha) / 10;
         }
-        if (this.vx >= 5) {
-            this.vx = 5;
+        if (this.vx >= this.maxSpeed ) {
+            this.vx = this.maxSpeed ;
         }
-        if (this.vx <= -5) {
-            this.vx = -5;
+        if (this.vx <= -this.maxSpeed ) {
+            this.vx = -this.maxSpeed ;
         }
-        if (this.vy >= 5) {
-            this.vy = 5;
+        if (this.vy >= this.maxSpeed ) {
+            this.vy = this.maxSpeed ;
         }
-        if (this.vy <= -5) {
-            this.vy = -5;
+        if (this.vy <= -this.maxSpeed ) {
+            this.vy = -this.maxSpeed ;
+        }
+
+        if (mouseClicks[0]){
+            this.shot();
         }
 
         this.x += this.vx;
@@ -72,9 +79,10 @@ class Ship {
 
     shot() {
         //console.log(this.alpha/PI);
-        let shot = new Shot(this, this.x, this.y, this.alpha, this.color);
-        this.shots.push(shot);
-        this.cdShot = this.cdMax;
-
+        if (millis()-this.cdShot >= this.cdMax) {
+            let shot = new Shot(this, this.x, this.y, this.alpha, this.color);
+            this.shots.push(shot);
+            this.cdShot = millis();
+        }
     }
 }
