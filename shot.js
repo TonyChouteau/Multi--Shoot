@@ -7,8 +7,9 @@ class Shot {
         this.y = y;
         this.color = color;
 
-        this.speed = 15;
+        this.speed = 10;
         this.hit = false;
+        this.size = 1; // % of Height
     }
 
     update() {
@@ -20,6 +21,6 @@ class Shot {
     display() {
         fill(255);
         noStroke();
-        ellipse(width / 2 - player.x + this.x, height / 2 - player.y + this.y, 10, 10);
+        ellipse(width / 2 - player.x + this.x, height / 2 - player.y + this.y, this.size/100*height, this.size/100*height);
     }
 }
