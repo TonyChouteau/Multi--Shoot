@@ -85,6 +85,7 @@ function keyReleased() {
 
 function mousePressed() {
     if (mouseButton === LEFT) {
+        mouseAlpha = Math.atan2(mouseX - width / 2, mouseY - height / 2) - HALF_PI;
         //console.log(player.shots);
         player.shot();
         // console.log("Left");

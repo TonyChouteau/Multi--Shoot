@@ -65,9 +65,13 @@ class Ship {
         noStroke();
         rect(width / 2 - this.size / 200 * height, height / 2 - this.size / 200 * height, (this.size / 100) * height, (this.size / 100) * height);
 
+        /*fill(255,0,0);
+        ellipse(width/2+width/10*cos(this.alpha), height/2-width/10*sin(this.alpha), 10, 10);*/
+
     }
 
     shot() {
+        //console.log(this.alpha/PI);
         let shot = new Shot(this, this.x, this.y, this.alpha, this.color);
         this.shots.push(shot);
         this.cdShot = this.cdMax;
