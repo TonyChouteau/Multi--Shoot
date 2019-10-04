@@ -42,7 +42,7 @@ function preload() {
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
 
-    frameRate(120);
+    frameRate(60);
 
     console.log("Loading");
 
@@ -63,7 +63,7 @@ function setup() {
 }
 
 async function refresh() {
-    const response = await fetch("https://vps.tonychouteau.fr:8084/refresh/"+player.id+"/"+Math.floor(player.x)+"/"+Math.floor(player.y));
+    const response = await fetch("https://vps.tonychouteau.fr:8084/refresh/"+player.id+"/"+player.x+"/"+player.y);
     const data = await response.json();
     //console.log("data : ")
     //console.log(data)
