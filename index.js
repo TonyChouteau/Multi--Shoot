@@ -17,6 +17,7 @@ let others = [];
 
 let planets = [];
 
+
 /*const request = async() => {
     const response = await fetch("./data.json");
     const json = await response.json();
@@ -50,7 +51,7 @@ function setup() {
         const response = await fetch("https://vps.tonychouteau.fr:8084/connect");
         const data = await response.json();
 
-        player = new Ship(data.id, data.x*28, data.y*18, color(data.color[0],data.color[1],data.color[2]));
+        player = new Ship(data.id, data.x * 28, data.y * 18, color(data.color[0], data.color[1], data.color[2]));
         map = new Map(player, playImage);
 
         console.log(data);
@@ -63,20 +64,20 @@ function setup() {
 }
 
 async function refresh() {
-    const response = await fetch("https://vps.tonychouteau.fr:8084/refresh/"+player.id+"/"+player.x+"/"+player.y);
+    const response = await fetch("https://vps.tonychouteau.fr:8084/refresh/" + player.id + "/" + player.x + "/" + player.y);
     const data = await response.json();
     //console.log("data : ")
     //console.log(data)
 
     others = [];
     if (data.others != null) {
-        for (let i=0; i<data.others.length; i++){
-            others.push(new Ship(data.others[0].id, data.others[0].x,data.others[0].y, color(data.others[0].color[0],data.others[0].color[1],data.others[0].color[2])));
+        for (let i = 0; i < data.others.length; i++) {
+            others.push(new Ship(data.others[i].id, data.others[i].x, data.others[i].y, color(data.others[i].color[0], data.others[i].color[1], data.others[i].color[2])));
         }
     }
 
     //console.log(millis()-t);
-        
+
     //console.log("others : ")
     //console.log(others)
 }
@@ -94,7 +95,7 @@ function windowResized() {
 // gauche, haut, droite, bas : 37 38 39 40
 
 let keys = [false, false, false, false];
-let mouseClicks = [false,false];
+let mouseClicks = [false, false];
 
 function keyPressed() {
     if (keyCode == 37) {
@@ -144,8 +145,7 @@ function mouseReleased() {
     }
 }
 
-function mouseMoved() {
-}
+function mouseMoved() {}
 
 /*
     END Handlers for click and keypress
@@ -164,14 +164,19 @@ function draw() {
         player.update(keys, mouseClicks, mouseAlpha);
         player.display();
 
-        let size = 5;
-        for (let i=0; i<others.length; i++){
+        fill(255);
+        textSize(15);
+        text("Online players : " + (others.length + 1), 10, 15);
+
+        let size = 4;
+        for (let i = 0; i < others.length; i++) {
             //others[i].display();
 
             fill(others[i].color);
             noStroke();
-            
-            ellipse(width / 2 - player.x + others[i].x, height / 2 - player.y + others[i].y, size/100*height, size/100*height);
+
+            rect(width / 2 - player.x + others[i].x, height / 2 - player.y + others[i].y, size / 100 * height, size / 100 * height);
+            //console.log(i)
         }
         //let t = millis();
         refresh();
