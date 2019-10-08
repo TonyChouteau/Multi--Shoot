@@ -6,7 +6,8 @@ class Map {
         this.sizeY = 200; // % of Height
     }
 
-    display() {
-        image(this.image, -this.player.x + width / 2, -this.player.y + height / 2, this.sizeX / 100 * height, this.sizeY / 100 * height);
+    display(player) {
+        this.player = player;
+        image(this.image, -this.player.x + width / 2, -this.player.y + height / 2, this.sizeX / 100 * width, this.sizeY / 100 * height);
     }
-}
+}   

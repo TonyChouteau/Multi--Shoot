@@ -41,7 +41,7 @@ function preload() {
 }
 
 function setup() {
-    canvas = createCanvas(windowWidth, windowHeight);
+    canvas = createCanvas(windowHeight*1.7, windowHeight);
 
     frameRate(60);
 
@@ -70,10 +70,8 @@ async function refresh() {
     //console.log(data)
 
     others = [];
-    if (data.others != null) {
-        for (let i = 0; i < data.others.length; i++) {
-            others.push(new Ship(data.others[i].id, data.others[i].x, data.others[i].y, color(data.others[i].color[0], data.others[i].color[1], data.others[i].color[2])));
-        }
+    if (data.otherss != null){
+        others = data.others;
     }
 
     //console.log(millis()-t);
@@ -83,7 +81,7 @@ async function refresh() {
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(windowHeight*1.7, windowHeight);
 }
 
 /*
@@ -158,7 +156,7 @@ function draw() {
         //console.log(player.id, others.length);
         background(0, 0, 0);
 
-        map.display();
+        map.display(player);
 
         mouseAlpha = Math.atan2(mouseX - width / 2, mouseY - height / 2) - HALF_PI;
         player.update(keys, mouseClicks, mouseAlpha);
@@ -168,7 +166,7 @@ function draw() {
         textSize(15);
         text("Online players : " + (others.length + 1), 10, 15);
 
-        let size = 4;
+        this.size = 3; // %
         for (let i = 0; i < others.length; i++) {
             //others[i].display();
 
