@@ -59,6 +59,11 @@ class Ship {
         this.vx*=0.99;
         this.vy*=0.99;
 
+
+// const result = words.filter(word => word.length > 6);
+
+        shots = shots.filter(shot => shot.isInScreen());
+
         for (let i = 0; i < this.shots.length; i++) {
             this.shots[i].update();
         }
