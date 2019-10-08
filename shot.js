@@ -5,6 +5,9 @@ class Shot {
         this.alpha = alpha;
         this.x = x;
         this.y = y;
+        this.x0 = x;
+        this.y0 = y;
+        // this.activ = true;
         this.color = color;
 
         this.speed = 10;
@@ -26,5 +29,9 @@ class Shot {
         
         /*fill(Math.random() * 255,Math.random() * 255,Math.random() * 255);
         ellipse(width/2+width/10*cos(this.alpha), height/2-width/10*sin(this.alpha), 10, 10);*/
+    }
+
+    isInScreen(){
+        return ( MATH.pow(this.x-this.x0, 2) + MATH.pow(this.y-this.y0, 2) < (height)/2 ) 
     }
 }
