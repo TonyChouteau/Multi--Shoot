@@ -70,7 +70,7 @@ async function refresh() {
     //console.log(data)
 
     others = [];
-    if (data.otherss != null){
+    if (data.others != null){
         others = data.others;
     }
 
